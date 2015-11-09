@@ -7,6 +7,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +38,7 @@ public class Resource {
 
 	/**
 	 * 判断是否为键
+	 * 
 	 * @param key
 	 * @return
 	 */
@@ -136,7 +138,7 @@ public class Resource {
 	}
 
 	/**
-	 * 能过两部分信息创建实例{@link #baseName}{@link #resourceType}<br>
+	 * 通过两部分信息创建实例{@link #baseName}{@link #resourceType}<br>
 	 * 资源位置固定为：运行目录/resource/<br>
 	 * 默认编码为：UTF-8<br>
 	 * 其它： {@link #getResource(String, String, String)}<br>
@@ -154,7 +156,7 @@ public class Resource {
 	}
 
 	/**
-	 * 能过两部分信息以及编码信息创建实例{@link #baseName}{@link #resourceType}<br>
+	 * 通过两部分信息以及编码信息创建实例{@link #baseName}{@link #resourceType}<br>
 	 * 资源位置固定为：运行目录/resource/<br>
 	 * 其它： {@link #getResource(String, String)}<br>
 	 * 
@@ -174,6 +176,27 @@ public class Resource {
 		return rs;
 	}
 
+	/**
+	 * 通过字符串数据创建实例<br>
+	 * 
+	 * @param data
+	 * @return
+	 * @throws IOException
+	 */
+	public static final Resource getResourceByData(String data) throws IOException {
+		if (null == data || data.length() == 0)
+			return null;
+		BufferedReader br = null;
+		try {
+			br = new BufferedReader(new StringReader(data));
+			Resource rs = new Resource();
+			saveData(rs, br);
+			return rs;
+		} finally {
+			close(br);
+		}
+	}
+
 	private static final Resource getResource(File file, String charsetName, String baseName, String resourceType)
 			throws UnsupportedEncodingException, FileNotFoundException, IOException {
 		BufferedReader br = null;
@@ -182,27 +205,31 @@ public class Resource {
 			Resource rs = new Resource();
 			rs.baseName = baseName;
 			rs.resourceType = resourceType;
-			String line;
-			int sepIndex;
-			String key;
-			String value;
-			while ((line = br.readLine()) != null) {
-				if (line.length() != 0) {
-					sepIndex = line.indexOf("=");
-					if (-1 == sepIndex) {
-						key = line.trim();
-						value = null;
-					} else {
-						key = line.substring(0, sepIndex).trim();
-						value = line.substring(sepIndex + 1, line.length()).trim();
-					}
-					rs.keyList.add(key);
-					rs.valueList.add(value);
-				}
-			}
+			saveData(rs, br);
 			return rs;
 		} finally {
 			close(br);
+		}
+	}
+
+	private static final void saveData(Resource rs, BufferedReader br) throws IOException {
+		String line;
+		int sepIndex;
+		String key;
+		String value;
+		while ((line = br.readLine()) != null) {
+			if (line.length() != 0) {
+				sepIndex = line.indexOf("=");
+				if (-1 == sepIndex) {
+					key = line.trim();
+					value = null;
+				} else {
+					key = line.substring(0, sepIndex).trim();
+					value = line.substring(sepIndex + 1, line.length()).trim();
+				}
+				rs.keyList.add(key);
+				rs.valueList.add(value);
+			}
 		}
 	}
 

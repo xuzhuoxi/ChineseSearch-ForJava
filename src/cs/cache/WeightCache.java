@@ -1,5 +1,6 @@
 package cs.cache;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 import cs.cache.valuecoding.ValueCodingTypes;
@@ -29,6 +30,20 @@ public abstract class WeightCache implements IWeightCache, ICacheInit {
 				this.tryCacheResourceInfo(resource.getKey(i), resource.getValue(i));
 			}
 		}
+	}
+
+	@Override
+	public void supplyData(String data) {
+		try {
+			supplyResource(Resource.getResourceByData(data));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void supplyData(String resourceKey, String resourceValue) {
+		this.tryCacheResourceInfo(resourceKey, resourceValue);
 	}
 
 	/**

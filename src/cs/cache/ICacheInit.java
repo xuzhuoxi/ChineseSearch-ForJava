@@ -23,25 +23,28 @@ public interface ICacheInit {
 	void initCache(String cacheName, ValueCodingTypes valueCodingType, int initialCapacity);
 
 	/**
-	 * 初始化实例数据<br>
+	 * 缓存数据<br>
 	 * 
 	 * @param resource
 	 *            数据资源，详细请看Resource类{@link Resource}
 	 */
 	void supplyResource(Resource resource);
 
-	// /**
-	// * 初始化实例数据<br>
-	// *
-	// * @param resource
-	// * 数据资源，详细请看Resource类{@link Resource}
-	// * @param valueType
-	// * 初始化时用于处理值行为的类型
-	// * @param charSet
-	// * 指定字符集
-	// * @param cacheDimension
-	// * 缓存维度
-	// */
-	// void initCache(Resource resource, ValueCodingTypes valueType, Character[]
-	// charSet, int cacheDimension);
+	/**
+	 * 缓存数据<br>
+	 * 
+	 * @param data
+	 *            数据字符串，以换行符区分单个数据
+	 */
+	void supplyData(String data);
+
+	/**
+	 * 缓存数据<br>
+	 * 
+	 * @param key
+	 *            汉字(词)
+	 * @param value
+	 *            值
+	 */
+	void supplyData(String resourceKey, String resourceValue);
 }

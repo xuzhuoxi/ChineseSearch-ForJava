@@ -1,5 +1,6 @@
 package cs.cache;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,19 +40,19 @@ public abstract class ChineseCache implements IChineseCache, ICacheInit {
 		}
 	}
 
-	// @Override
-	// public void initCache(Resource resource, ValueCodingTypes valueType,
-	// Character[] charSet, int cacheDimension) {
-	// int size = resource.size();
-	// this.key2values = new HashMap<String, KeyValues>(size * 2);
-	// this.strategy = ValueCoding.getValueCodingStrategy(valueType);
-	//
-	// this.chineseMap = DimensionMap.createDimensionMap(charSet,
-	// cacheDimension);
-	// for (int i = 0; i < size; i++) {
-	// this.tryCacheResourceInfo(resource.getKey(i), resource.getValue(i));
-	// }
-	// }
+	@Override
+	public void supplyData(String data) {
+		try {
+			supplyResource(Resource.getResourceByData(data));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void supplyData(String resourceKey, String resourceValue) {
+		this.tryCacheResourceInfo(resourceKey, resourceValue);
+	}
 
 	/**
 	 * 尝试缓存一对键值对<br>
