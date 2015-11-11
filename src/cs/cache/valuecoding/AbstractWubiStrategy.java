@@ -13,7 +13,8 @@ public abstract class AbstractWubiStrategy extends ValueCoding {
 	 * 过滤输入，保留中文字符和五笔编码用到的字符<br>
 	 * 
 	 * @param input
-	 * @return
+	 *            输入字符串
+	 * @return 过滤处理后的字符串
 	 */
 	protected final String wubiFilter(String input) {
 		sb.setLength(0);
@@ -31,8 +32,10 @@ public abstract class AbstractWubiStrategy extends ValueCoding {
 	 * 通过word在wordMap中查找全部值，返回编码长度最长的一个
 	 * 
 	 * @param wordMap
+	 *            字(词)库，IChineseCache实例{@link IChineseCache}
 	 * @param word
-	 * @return
+	 *            字(词)
+	 * @return 最长的编码
 	 */
 	protected final String getWubiMaxlenValue(IChineseCache wordMap, String word) {
 		String[] values = wordMap.getValues(word);

@@ -13,8 +13,10 @@ public interface IChineseWordsCoding {
 	 * 要求实现对象先验证有效性。<br>
 	 * 
 	 * @param wordCache
+	 *            中文缓存实例{@link IChineseCache}
 	 * @param words
-	 * @return
+	 *            词
+	 * @return 编码数组
 	 */
 	String[] coding(IChineseCache wordCache, String words);
 }

@@ -27,7 +27,7 @@ public abstract class WeightCache implements IWeightCache, ICacheInit {
 		if (null != resource) {
 			int size = resource.size();
 			for (int i = 0; i < size; i++) {
-				this.tryCacheResourceInfo(resource.getKey(i), resource.getValue(i));
+				this.tryCacheKeyValue(resource.getKey(i), resource.getValue(i));
 			}
 		}
 	}
@@ -43,7 +43,7 @@ public abstract class WeightCache implements IWeightCache, ICacheInit {
 
 	@Override
 	public void supplyData(String resourceKey, String resourceValue) {
-		this.tryCacheResourceInfo(resourceKey, resourceValue);
+		this.tryCacheKeyValue(resourceKey, resourceValue);
 	}
 
 	/**
@@ -51,10 +51,12 @@ public abstract class WeightCache implements IWeightCache, ICacheInit {
 	 * 先检查有效性，不通过则忽略<br>
 	 * 
 	 * @param resourceKey
+	 *            键
 	 * @param resourceValue
-	 * @return
+	 *            值
+	 * @return 缓存成功true，否则false.
 	 */
-	abstract protected boolean tryCacheResourceInfo(String resourceKey, String resourceValue);
+	abstract protected boolean tryCacheKeyValue(String resourceKey, String resourceValue);
 
 	@Override
 	public String getCacheName() {
@@ -71,9 +73,6 @@ public abstract class WeightCache implements IWeightCache, ICacheInit {
 		return key2weight.size();
 	}
 
-	/**
-	 * 对于没有缓存的，统一返回默认值
-	 */
 	@Override
 	public double getValues(String key) {
 		if (isKey(key)) {

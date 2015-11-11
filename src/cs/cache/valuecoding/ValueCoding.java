@@ -43,7 +43,8 @@ public abstract class ValueCoding {
 	 * 如果缓存中没有，则调用子类的{@link #computeDimensionKeys(String)}方法进行计算
 	 * 
 	 * @param simplifyValue
-	 * @return
+	 *            简化输入
+	 * @return 计算得到的dimensionKey列表
 	 */
 	protected final String[] abstractGetDimensionKeys(String simplifyValue) {
 		if (simplifyValueKeysMap.containsKey(simplifyValue)) {
@@ -59,7 +60,8 @@ public abstract class ValueCoding {
 	 * 计算简化编码
 	 * 
 	 * @param simplifyValue
-	 * @return
+	 *            简化输入
+	 * @return 计算得到的dimensionKey列表
 	 */
 	abstract protected String[] computeDimensionKeys(String simplifyValue);
 }

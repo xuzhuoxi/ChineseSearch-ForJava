@@ -11,7 +11,7 @@ public interface ICache {
 	/**
 	 * 取得当前实例在实例化期间被赋予的名字
 	 * 
-	 * @return
+	 * @return 取得当前实例在实例化期间被赋予的名字
 	 */
 	String getCacheName();
 
@@ -19,14 +19,15 @@ public interface ICache {
 	 * 检测key是否被缓存起来
 	 * 
 	 * @param key
-	 * @return
+	 *            键
+	 * @return 有true无false
 	 */
 	boolean isKey(String key);
 
 	/**
 	 * 缓存Key数
 	 * 
-	 * @return
+	 * @return 缓存Key数
 	 */
 	int getKeysSize();
 }

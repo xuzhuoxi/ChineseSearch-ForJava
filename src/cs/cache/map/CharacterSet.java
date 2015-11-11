@@ -8,6 +8,9 @@ package cs.cache.map;
  *
  */
 public class CharacterSet {
+	private CharacterSet() {
+	}
+
 	/**
 	 * 拼音用到的字符
 	 */
@@ -27,7 +30,7 @@ public class CharacterSet {
 	/**
 	 * 获取 拼音用到的字符
 	 * 
-	 * @return
+	 * @return 拼音用到的字符
 	 */
 	public static final Character[] LETTER_CHARSET() {
 		return letterCharset.clone();
@@ -36,7 +39,7 @@ public class CharacterSet {
 	/**
 	 * 获取 五笔用到的字符
 	 * 
-	 * @return
+	 * @return 五笔用到的字符
 	 */
 	public static final Character[] WUBI_LETTER_CHARSET() {
 		return wubiLetterCharset.clone();
@@ -45,7 +48,7 @@ public class CharacterSet {
 	/**
 	 * 获取 数字用到的字符
 	 * 
-	 * @return
+	 * @return 数字用到的字符
 	 */
 	public static final Character[] NUMBER_CHARSET() {
 		return numberCharset.clone();

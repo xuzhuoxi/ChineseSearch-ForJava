@@ -30,21 +30,21 @@ public class SearchTypeInfo {
 	}
 
 	/**
-	 * 检索类型
+	 * @return 检索类型
 	 */
 	public final SearchTypes getSearchType() {
 		return searchType;
 	}
 
 	/**
-	 * 检索使用的Cache名称
+	 * @return 检索使用的Cache名称
 	 */
 	public final String getCacheName() {
 		return cacheName;
 	}
 
 	/**
-	 * 输入处理类型
+	 * @return 输入处理类型
 	 */
 	public final ValueCodingTypes getValueType() {
 		return valueType;

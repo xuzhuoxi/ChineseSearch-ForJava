@@ -11,7 +11,7 @@ public abstract class ChineseSearcherFactory {
 	/**
 	 * 取得一个IChineseSearcher单例实例<br>
 	 * 
-	 * @return
+	 * @return 单例实例
 	 */
 	public final static IChineseSearcher getChineseSearcher() {
 		return instance;
@@ -20,9 +20,14 @@ public abstract class ChineseSearcherFactory {
 	/**
 	 * 取得一个IChineseSearcher实例<br>
 	 * 
-	 * @return
+	 * @param newInstance
+	 *            是否创建新实例
+	 * @return 当newInstance为true时，创建新实例<br>
+	 *         当newInstance为false时，返回单例<br>
 	 */
 	public final static IChineseSearcher getChineseSearcher(boolean newInstance) {
-		return new ChineseSearcherImpl();
+		if (newInstance)
+			return new ChineseSearcherImpl();
+		return instance;
 	}
 }

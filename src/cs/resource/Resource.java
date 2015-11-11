@@ -12,7 +12,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
-import code.BasePathUtils;
+import code.path.BasePathUtils;
 
 /**
  * 
@@ -40,7 +40,8 @@ public class Resource {
 	 * 判断是否为键
 	 * 
 	 * @param key
-	 * @return
+	 *            待判断的键
+	 * @return 是true否false
 	 */
 	public final boolean isKey(String key) {
 		return keyList.contains(key);
@@ -49,7 +50,7 @@ public class Resource {
 	/**
 	 * 键值对数量
 	 * 
-	 * @return
+	 * @return 键值对数量
 	 */
 	public final int size() {
 		return keyList.size();
@@ -59,7 +60,8 @@ public class Resource {
 	 * 取键
 	 * 
 	 * @param index
-	 * @return
+	 *            索引
+	 * @return 键
 	 */
 	public final String getKey(int index) {
 		return keyList.get(index);
@@ -68,7 +70,7 @@ public class Resource {
 	/**
 	 * 取全部键
 	 * 
-	 * @return
+	 * @return 键组成的数组
 	 */
 	public final String[] getKeys() {
 		String[] rs = new String[keyList.size()];
@@ -79,7 +81,8 @@ public class Resource {
 	 * 取值
 	 * 
 	 * @param index
-	 * @return
+	 *            索引
+	 * @return 值
 	 */
 	public final String getValue(int index) {
 		return valueList.get(index);
@@ -90,10 +93,14 @@ public class Resource {
 	 * 其它编码可参考{@link #getResourceByPath(String, String)}
 	 * 
 	 * @param path
-	 * @return
+	 *            文件路径
+	 * @return Resource实例
 	 * @throws UnsupportedEncodingException
+	 *             如果不支持指定的字符集
 	 * @throws FileNotFoundException
+	 *             当试图打开指定路径名表示的文件失败时，抛出此异常。
 	 * @throws IOException
+	 *             如果发生 I/O 错误
 	 */
 	public static final Resource getResourceByPath(String path)
 			throws UnsupportedEncodingException, FileNotFoundException, IOException {
@@ -105,11 +112,16 @@ public class Resource {
 	 * 其它请参考{@link #getResourceByPath(String)}
 	 * 
 	 * @param path
+	 *            文件路径
 	 * @param charsetName
-	 * @return
+	 *            文件编码格式
+	 * @return Resource实例
 	 * @throws UnsupportedEncodingException
+	 *             如果不支持指定的字符集
 	 * @throws FileNotFoundException
+	 *             当试图打开指定路径名表示的文件失败时，抛出此异常。
 	 * @throws IOException
+	 *             如果发生 I/O 错误
 	 */
 	public static final Resource getResourceByPath(String path, String charsetName)
 			throws UnsupportedEncodingException, FileNotFoundException, IOException {
@@ -144,11 +156,16 @@ public class Resource {
 	 * 其它： {@link #getResource(String, String, String)}<br>
 	 * 
 	 * @param baseName
+	 *            基本名称
 	 * @param resourceType
-	 * @return
+	 *            类型名称
+	 * @return Resource实例
 	 * @throws UnsupportedEncodingException
+	 *             如果不支持指定的字符集
 	 * @throws FileNotFoundException
+	 *             当试图打开指定路径名表示的文件失败时，抛出此异常。
 	 * @throws IOException
+	 *             如果发生 I/O 错误
 	 */
 	public static final Resource getResource(String baseName, String resourceType)
 			throws UnsupportedEncodingException, FileNotFoundException, IOException {
@@ -161,12 +178,18 @@ public class Resource {
 	 * 其它： {@link #getResource(String, String)}<br>
 	 * 
 	 * @param baseName
+	 *            基本名称
 	 * @param resourceType
+	 *            类型名称
 	 * @param charsetName
-	 * @return
+	 *            文件编码格式
+	 * @return Resource实例
 	 * @throws UnsupportedEncodingException
+	 *             如果不支持指定的字符集
 	 * @throws FileNotFoundException
+	 *             当试图打开指定路径名表示的文件失败时，抛出此异常。
 	 * @throws IOException
+	 *             如果发生 I/O 错误
 	 */
 	public static final Resource getResource(String baseName, String resourceType, String charsetName)
 			throws UnsupportedEncodingException, FileNotFoundException, IOException {
@@ -180,8 +203,10 @@ public class Resource {
 	 * 通过字符串数据创建实例<br>
 	 * 
 	 * @param data
-	 * @return
+	 *            字符串数据
+	 * @return Resource实例
 	 * @throws IOException
+	 *             如果发生 I/O 错误
 	 */
 	public static final Resource getResourceByData(String data) throws IOException {
 		if (null == data || data.length() == 0)

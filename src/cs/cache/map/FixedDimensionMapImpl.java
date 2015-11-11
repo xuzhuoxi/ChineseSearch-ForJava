@@ -44,7 +44,7 @@ public class FixedDimensionMapImpl extends DimensionMap implements IDimensionMap
 	@Override
 	public void add(String dimensionKey, String dimensionValue) {
 		if (dimensionKey.length() <= dimension) {
-			List<String> list = getValueList(dimensionKey);
+			List<String> list = getKeyListAtLenLimit(dimensionKey);
 			if (!list.contains(dimensionValue)) {
 				list.add(dimensionValue);
 			}
@@ -53,7 +53,7 @@ public class FixedDimensionMapImpl extends DimensionMap implements IDimensionMap
 
 	@Override
 	public List<String> get(String dimensionKey) {
-		return getDimensionValues(dimensionKey);
+		return getKeyList(dimensionKey);
 	}
 
 	private List<String> addDimmension(List<String> dimesionKeylist) {

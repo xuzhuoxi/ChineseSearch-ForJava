@@ -37,7 +37,7 @@ public class SearchKeyResult implements Comparable<SearchKeyResult> {
 	/**
 	 * 计算是否有完整匹配情况<br>
 	 * 
-	 * @return
+	 * @return 有完整匹配true否false
 	 */
 	public final boolean hasFullMatching() {
 		for (SearchTypeResult str : list) {
@@ -51,7 +51,7 @@ public class SearchKeyResult implements Comparable<SearchKeyResult> {
 	 * 计算匹配度<br>
 	 * 把各个检索类别的结果相加<br>
 	 * 
-	 * @return
+	 * @return 匹配度
 	 */
 	public final double getTotalValue() {
 		double value = 0;
@@ -66,7 +66,9 @@ public class SearchKeyResult implements Comparable<SearchKeyResult> {
 	 * 更新单个检索类别的匹配值，存储更大的<br>
 	 * 
 	 * @param searchType
+	 *            检索类别
 	 * @param value
+	 *            匹配值
 	 */
 	public final void updateBiggerValue(SearchTypes searchType, double value) {
 		SearchTypeResult str = null;
@@ -84,6 +86,7 @@ public class SearchKeyResult implements Comparable<SearchKeyResult> {
 	 * 更新单个字(词)的单个检索类型结果，存储更大的<br>
 	 * 
 	 * @param str
+	 *            单个字(词)的单个检索类型结果
 	 */
 	public final void updateBiggerValue(SearchTypeResult str) {
 		if (null == str)
@@ -101,7 +104,8 @@ public class SearchKeyResult implements Comparable<SearchKeyResult> {
 	 * 取得指定检索类别的匹配度<br>
 	 * 
 	 * @param searchType
-	 * @return
+	 *            检索类别
+	 * @return 匹配度
 	 */
 	public final double getValue(SearchTypes searchType) {
 		if (typeList.contains(searchType)) {
@@ -112,9 +116,9 @@ public class SearchKeyResult implements Comparable<SearchKeyResult> {
 	}
 
 	/**
-	 * 取得全部的检索类别<br>
+	 * 取得全部的检索类别 {@link SearchTypes}<br>
 	 * 
-	 * @return
+	 * @return 全部的检索类别
 	 */
 	public final SearchTypes[] getSearchTypes() {
 		SearchTypes[] rs = new SearchTypes[typeList.size()];
@@ -126,7 +130,8 @@ public class SearchKeyResult implements Comparable<SearchKeyResult> {
 	 * 遍历全部的检索类别和值，进行更新{@link #updateBiggerValue(SearchTypes, double)}<br>
 	 * 
 	 * @param skr
-	 * @return
+	 *            单个字(词)的检索结果
+	 * @return 键相同true否false
 	 */
 	public final boolean addSearchKeyResult(SearchKeyResult skr) {
 		if (null != skr && skr != this && this.key.equals(skr.getKey())) {
@@ -144,6 +149,10 @@ public class SearchKeyResult implements Comparable<SearchKeyResult> {
 	 * 与另一个SearchKeyResult实例比较大小<br>
 	 * 1.有完整匹配的大于没有完整匹配的{@link #hasFullMatching()}<br>
 	 * 2.完整匹配信息一致的，比较匹配度的大小{@link #getTotalValue()}<br>
+	 * 
+	 * @param o
+	 *            待比较对象
+	 * @return [-1,0,1]
 	 */
 	@Override
 	public int compareTo(SearchKeyResult o) {

@@ -14,7 +14,8 @@ public interface IValueCodingStrategy {
 	 * 简化:对值编码或输入编码进行进一步简化
 	 * 
 	 * @param value
-	 * @return
+	 *            值数据字符串
+	 * @return 简化值
 	 */
 	String getSimplifyValue(String value);
 
@@ -22,7 +23,8 @@ public interface IValueCodingStrategy {
 	 * 获取缓存key
 	 * 
 	 * @param simplifyValue
-	 * @return
+	 *            简化值
+	 * @return dimensionKey列表
 	 */
 	String[] getDimensionKeys(String simplifyValue);
 
@@ -30,7 +32,8 @@ public interface IValueCodingStrategy {
 	 * 过滤输入的字符串
 	 * 
 	 * @param input
-	 * @return
+	 *            输入字符串
+	 * @return 过滤后的字符串
 	 */
 	String filter(String input);
 
@@ -38,7 +41,8 @@ public interface IValueCodingStrategy {
 	 * 翻译
 	 * 
 	 * @param filteredInput
-	 * @return
+	 *            过滤后的字符串
+	 * @return 把要翻译的字符进行翻译后得到的字符串数组。
 	 */
 	String[] translate(String filteredInput);
 }

@@ -19,7 +19,7 @@ public class SearchTypeResult implements Comparable<SearchTypeResult> {
 	/**
 	 * 检索类型
 	 * 
-	 * @return
+	 * @return 检索类型
 	 */
 	public SearchTypes getSearchType() {
 		return searchType;
@@ -28,7 +28,7 @@ public class SearchTypeResult implements Comparable<SearchTypeResult> {
 	/**
 	 * 检索结果
 	 * 
-	 * @return
+	 * @return 检索结果(匹配度)
 	 */
 	public double getValue() {
 		return value;
@@ -37,8 +37,10 @@ public class SearchTypeResult implements Comparable<SearchTypeResult> {
 	/**
 	 * 更新检索结果
 	 * 
-	 * @see #fullMatchingValue
 	 * @param value
+	 *            检索结果(匹配度)
+	 * 
+	 * @see #fullMatchingValue
 	 */
 	public void updateBiggerValue(double value) {
 		if (value <= fullMatchingValue && Double.compare(this.value, value) < 0) {
@@ -49,8 +51,8 @@ public class SearchTypeResult implements Comparable<SearchTypeResult> {
 	/**
 	 * 是否为全匹配
 	 * 
+	 * @return 是true否false
 	 * @see #fullMatchingValue
-	 * @return
 	 */
 	public boolean isFullMatching() {
 		return value >= fullMatchingValue;
@@ -58,6 +60,10 @@ public class SearchTypeResult implements Comparable<SearchTypeResult> {
 
 	/**
 	 * 大小比较
+	 * 
+	 * @param o
+	 *            待比较对象
+	 * @return [-1,0,1]
 	 */
 	@Override
 	public int compareTo(SearchTypeResult o) {

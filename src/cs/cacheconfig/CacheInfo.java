@@ -67,62 +67,60 @@ public class CacheInfo {
 	}
 
 	/**
-	 * cache名称
+	 * @return cache名称
 	 */
 	public String getCacheName() {
 		return cacheName;
 	}
 
 	/**
-	 * 缓存初始化时使用资源的路径<br>
-	 * 多个资源可使用";"相隔
+	 * @return 缓存初始化时使用资源的路径<br>
+	 *         多个资源可使用";"相隔
 	 */
 	public String getResourcePath() {
 		return resourcePath;
 	}
 
 	/**
-	 * 字符文件编码类型，如UTF-8等<br>
-	 * 默认为UTF-8<br>
+	 * @return 字符文件编码类型，如UTF-8等<br>
+	 *         默认为UTF-8<br>
 	 */
 	public String getCharsetName() {
 		return charsetName;
 	}
 
 	/**
-	 * 资源的值处理类型
+	 * @return 资源的值处理类型
 	 */
 	public ValueCodingTypes getValueType() {
 		return valueType;
 	}
 
 	/**
-	 * 是否为单例<br>
-	 * 是：实例化后加入到缓存池中。{@link CachePool}<br>
-	 * 否：实例化后不加入到缓存池中。<br>
+	 * @return 是否为单例<br>
+	 *         是：实例化后加入到缓存池中。{@link CachePool}<br>
+	 *         否：实例化后不加入到缓存池中。<br>
 	 */
 	public boolean isSingleton() {
 		return singleton;
 	}
 
 	/**
-	 * 缓存实例的Class对象
+	 * @return 缓存实例的Class对象
 	 */
 	public Class<? extends ICache> getCacheClass() {
 		return cacheClass;
 	}
 
 	/**
-	 * 哈希表初始容量
+	 * @return 哈希表初始容量
 	 */
 	public int getInitialCapacity() {
 		return initialCapacity;
 	}
 
 	/**
-	 * 是否需要资源作为初始化，当resourcePath{@link #resourcePath}无效时返回false。
-	 * 
-	 * @return
+	 * @return 是否需要资源作为初始化，当resourcePath{@link #resourcePath}无效时返回false。
 	 */
 	public boolean isNeedResource() {
 		return null != resourcePath && resourcePath.length() > 0;

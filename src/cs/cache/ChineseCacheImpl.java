@@ -18,7 +18,7 @@ public class ChineseCacheImpl extends ChineseCache {
 	 * 3.缓存每个值时，同进行简化反向影射。<br>
 	 */
 	@Override
-	protected final boolean tryCacheResourceInfo(String resourceKey, String resourceValue) {
+	protected final boolean tryCacheKeyValue(String resourceKey, String resourceValue) {
 		if (null == resourceKey || resourceKey.length() == 0 || null == resourceValue || resourceValue.length() == 0) {
 			return false;
 		}

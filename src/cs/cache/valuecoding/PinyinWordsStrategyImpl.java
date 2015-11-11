@@ -84,6 +84,8 @@ public class PinyinWordsStrategyImpl extends ValueCoding implements IValueCoding
 	 * 2.对上面的每一个字符串进行简化{@link #getSimplifyValue(String)}<br>
 	 * 3.对第一个简化后的字符串进行截取最多前三位<br>
 	 * 4.返回上一步字符串组成的非重复数组<br>
+	 * 
+	 * @see #getSimplifyValue(String)
 	 */
 	@Override
 	public String[] translate(String filteredInput) {
@@ -133,6 +135,8 @@ public class PinyinWordsStrategyImpl extends ValueCoding implements IValueCoding
 	 * 1.截取第二位开始的字符中进行无重复基于顺序的自由组合，详细请看{@link StringCombination}<br>
 	 * 2.第一位分别拼接上面得的到字符串数组<br>
 	 * 3.返回第一位字符以及上面的字符串数组组成的数组<br>
+	 * 
+	 * @see StringCombination
 	 */
 	@Override
 	protected String[] computeDimensionKeys(String simplifyValue) {

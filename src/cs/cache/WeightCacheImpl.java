@@ -20,7 +20,7 @@ public class WeightCacheImpl extends WeightCache {
 	 * 已有缓存、格式不对、小于等于默认权值的忽略，不加入缓存
 	 */
 	@Override
-	protected boolean tryCacheResourceInfo(String resourceKey, String resourceValue) {
+	protected boolean tryCacheKeyValue(String resourceKey, String resourceValue) {
 		if (!key2weight.containsKey(resourceKey)) {
 			if (resourceValue.matches(REGEX_FLOAT_1MORE)) {
 				double value = Double.parseDouble(resourceValue);

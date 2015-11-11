@@ -9,7 +9,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import code.BasePathUtils;
+import code.path.BasePathUtils;
 import cs.cache.ICache;
 import cs.cache.ICacheInit;
 import cs.resource.Resource;
@@ -38,7 +38,8 @@ public class CachePool {
 	 * 通过cacheName取得一个实例
 	 * 
 	 * @param cacheName
-	 * @return
+	 *            Cache名称{@link CacheNames}
+	 * @return ICache实例
 	 */
 	public static final ICache getCache(String cacheName) {
 		CacheInfo ci = CacheConfig.getCacheInfo(cacheName);

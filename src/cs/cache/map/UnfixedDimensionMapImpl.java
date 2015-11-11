@@ -23,9 +23,8 @@ public class UnfixedDimensionMapImpl extends DimensionMap implements IDimensionM
 	/**
 	 * 如果键dimensionKey的长度大于维度(valueList.size)，则补充空的Map对应使得维度(valueList.size)
 	 * 等于键dimensionKey的长度<br>
-	 * 
-	 * @Override
 	 */
+	@Override
 	public void add(String dimensionKey, String dimensionValue) {
 		if (null == dimensionKey || dimensionKey.length() == 0) {
 			return;
@@ -51,6 +50,6 @@ public class UnfixedDimensionMapImpl extends DimensionMap implements IDimensionM
 
 	@Override
 	public List<String> get(String dimensionKey) {
-		return getDimensionValues(dimensionKey);
+		return getKeyList(dimensionKey);
 	}
 }

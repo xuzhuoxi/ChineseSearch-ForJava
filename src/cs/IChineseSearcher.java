@@ -17,7 +17,8 @@ public interface IChineseSearcher {
 	 * 拼音、五笔
 	 * 
 	 * @param input
-	 * @return
+	 *            检索输入字符串
+	 * @return 检索结果数组
 	 */
 	SearchKeyResult[] searchWord(String input);
 
@@ -26,9 +27,10 @@ public interface IChineseSearcher {
 	 * 拼音、五笔
 	 * 
 	 * @param input
+	 *            检索输入字符串
 	 * @param max
 	 *            返回最大检索结果量
-	 * @return
+	 * @return 检索结果数组
 	 */
 	SearchKeyResult[] searchWord(String input, int max);
 
@@ -37,7 +39,8 @@ public interface IChineseSearcher {
 	 * 拼音、五笔
 	 * 
 	 * @param input
-	 * @return
+	 *            检索输入字符串
+	 * @return 检索结果数组
 	 */
 	SearchKeyResult[] searchWords(String input);
 
@@ -46,9 +49,10 @@ public interface IChineseSearcher {
 	 * 拼音、五笔
 	 * 
 	 * @param input
+	 *            检索输入字符串
 	 * @param max
 	 *            返回最大检索结果量
-	 * @return
+	 * @return 检索结果数组
 	 */
 	SearchKeyResult[] searchWords(String input, int max);
 
@@ -56,21 +60,10 @@ public interface IChineseSearcher {
 	 * 检索
 	 * 
 	 * @param input
+	 *            检索输入字符串
 	 * @param searchType
 	 *            自定义检索类型
-	 * @return
+	 * @return SearchResult实例{@link SearchResult}
 	 */
 	SearchResult search(String input, SearchTypes[] searchType);
-
-	/**
-	 * 检索
-	 * 
-	 * @param input
-	 * @param searchType
-	 *            自定义检索类型
-	 * @param max
-	 *            返回最大检索结果量
-	 * @return
-	 */
-	SearchResult search(String input, SearchTypes[] searchType, int max);
 }

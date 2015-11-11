@@ -32,7 +32,8 @@ public class KeyValues {
 	 * 验证编码是否重复，否则存起来
 	 * 
 	 * @param value
-	 * @return
+	 *            编码
+	 * @return 缓存成功true，否则返回false
 	 */
 	public final boolean addValue(String value) {
 		if (values.contains(value)) {
@@ -45,7 +46,7 @@ public class KeyValues {
 	/**
 	 * 取得全部编码信息
 	 * 
-	 * @return
+	 * @return 全部编码组成的数组
 	 */
 	public final String[] getValues() {
 		String[] rs = new String[values.size()];

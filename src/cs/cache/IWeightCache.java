@@ -15,7 +15,8 @@ public interface IWeightCache extends ICache {
 	 * 取权重，若key没有记录，则返回默认权重<br>
 	 * 
 	 * @param key
-	 * @return
+	 *            键
+	 * @return 权重值
 	 */
 	double getValues(String key);
 }

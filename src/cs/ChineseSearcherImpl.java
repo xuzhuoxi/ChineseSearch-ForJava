@@ -65,11 +65,6 @@ public class ChineseSearcherImpl implements IChineseSearcher {
 		return this.tryAdvancedSearch(input, searchTypes, Integer.MAX_VALUE);
 	}
 
-	@Override
-	public SearchResult search(String input, SearchTypes[] searchTypes, int max) {
-		return this.tryAdvancedSearch(input, searchTypes, max);
-	}
-
 	private SearchKeyResult[] trySearch(String input, SearchTypes[] searchTypes, int max) {
 		if (null == input)
 			return null;

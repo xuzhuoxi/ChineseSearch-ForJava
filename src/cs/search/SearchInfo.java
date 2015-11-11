@@ -37,6 +37,8 @@ public class SearchInfo {
 
 	/**
 	 * 输入信息，保证已经去掉前后空格并把大写字母转为小写<br>
+	 * 
+	 * @return 输入信息，保证已经去掉前后空格并把大写字母转为小写<br>
 	 */
 	public String getInputStr() {
 		return inputStr;
@@ -44,6 +46,8 @@ public class SearchInfo {
 
 	/**
 	 * 需要执行的检索类别<br>
+	 * 
+	 * @return 需要执行的检索类别<br>
 	 */
 	public SearchTypes[] getSearchType() {
 		return searchType;
@@ -51,6 +55,8 @@ public class SearchInfo {
 
 	/**
 	 * 最大返回量
+	 * 
+	 * @return 最大返回量
 	 */
 	public int getMaxResultCount() {
 		return maxResultCount;
@@ -58,6 +64,8 @@ public class SearchInfo {
 
 	/**
 	 * 输入中是否带中文字
+	 * 
+	 * @return 输入中是否带中文字
 	 */
 	public boolean isChineseInput() {
 		return chineseInput;
@@ -66,6 +74,8 @@ public class SearchInfo {
 	/**
 	 * 当chineseInput为true时有效<br>
 	 * 一个针对中文字生成的正则表达式{@link ChineseUtils#toChineseWordsRegexp(String)}<br>
+	 * 
+	 * @return 输入的中文正则表达式
 	 */
 	public String getChineseWordsRegexp() {
 		return chineseWordsRegexp;

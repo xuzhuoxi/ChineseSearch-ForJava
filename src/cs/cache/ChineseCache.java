@@ -36,7 +36,7 @@ public abstract class ChineseCache implements IChineseCache, ICacheInit {
 	public void supplyResource(Resource resource) {
 		int size = resource.size();
 		for (int i = 0; i < size; i++) {
-			this.tryCacheResourceInfo(resource.getKey(i), resource.getValue(i));
+			this.tryCacheKeyValue(resource.getKey(i), resource.getValue(i));
 		}
 	}
 
@@ -51,7 +51,7 @@ public abstract class ChineseCache implements IChineseCache, ICacheInit {
 
 	@Override
 	public void supplyData(String resourceKey, String resourceValue) {
-		this.tryCacheResourceInfo(resourceKey, resourceValue);
+		this.tryCacheKeyValue(resourceKey, resourceValue);
 	}
 
 	/**
@@ -59,19 +59,23 @@ public abstract class ChineseCache implements IChineseCache, ICacheInit {
 	 * 先检查有效性，不通过则忽略<br>
 	 * 
 	 * @param resourceKey
+	 *            键
 	 * @param resourceValue
-	 * @return
+	 *            值
+	 * @return 缓存成功true，否则false.
 	 */
-	abstract protected boolean tryCacheResourceInfo(String resourceKey, String resourceValue);
+	abstract protected boolean tryCacheKeyValue(String resourceKey, String resourceValue);
 
 	/**
 	 * 简化反向影射:<br>
-	 * 1.简化输入。{@link IValueCodingStrategy#getSimplifyValue(String)}<br>
-	 * 2.计算多维缓存Key.{@link IValueCodingStrategy#getDimensionKeys(String)}<br>
+	 * 1.简化输入。{@link IValueCodingStrategy#getSimplifyValue}<br>
+	 * 2.计算多维缓存Key。{@link IValueCodingStrategy#getDimensionKeys} <br>
 	 * 3.建立缓存key与汉字的影射。<br>
 	 * 
 	 * @param singleValue
+	 *            值的简化键
 	 * @param key
+	 *            键
 	 */
 	protected final void cache2DimensionMap(String singleValue, String key) {
 		String[] dimensionKeys = strategy.getDimensionKeys(strategy.getSimplifyValue(singleValue));
@@ -117,12 +121,4 @@ public abstract class ChineseCache implements IChineseCache, ICacheInit {
 		rs.supplyResource(resource);
 		return rs;
 	}
-
-	// public static final IChineseCache createChineseCache(Resource resource,
-	// ValueCodingTypes valueType,
-	// Character[] charSet, int cacheDimension) {
-	// ChineseCacheImpl rs = new ChineseCacheImpl();
-	// rs.initCache(resource, valueType, charSet, cacheDimension);
-	// return rs;
-	// }
 }

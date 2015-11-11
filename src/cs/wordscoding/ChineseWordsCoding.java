@@ -25,7 +25,9 @@ abstract public class ChineseWordsCoding {
 	 * 2.输入中字符必须在wordCache中有编码信息。<br>
 	 * 
 	 * @param wordCache
+	 *            中文缓存实例{@link IChineseCache}
 	 * @param words
+	 *            词
 	 * @return 输入中有一个字符不符合则返回false
 	 */
 	protected final boolean canCoding(IChineseCache wordCache, String words) {

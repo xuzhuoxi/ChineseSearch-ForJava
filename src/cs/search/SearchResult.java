@@ -31,8 +31,11 @@ public class SearchResult {
 	 * 2.没有key相同的:直接存起来<br>
 	 * 
 	 * @param searchResult
+	 *            另一个检索结果
 	 */
 	public void addResult(SearchResult searchResult) {
+		if (searchResult == this)
+			return;
 		SearchKeyResult[] adds = searchResult.getResults();
 		for (SearchKeyResult add : adds) {
 			tryAddKeyResutl(add);
@@ -45,6 +48,7 @@ public class SearchResult {
 	 * 2.没有key相同的:直接存起来<br>
 	 * 
 	 * @param keyResult
+	 *            键结果
 	 */
 	public void addKeyResult(SearchKeyResult keyResult) {
 		tryAddKeyResutl(keyResult);
@@ -56,6 +60,7 @@ public class SearchResult {
 	 * {@link String#matches(String)}{@link SearchInfo#getChineseWordsRegexp()}
 	 * 
 	 * @param regexp
+	 *            正则表达式
 	 */
 	public void chineseRegexpMatchingClear(String regexp) {
 		Set<String> keySet = keyResultMap.keySet();
@@ -71,7 +76,7 @@ public class SearchResult {
 	/**
 	 * 取得当前键结果数量<br>
 	 * 
-	 * @return
+	 * @return 结果数量
 	 */
 	public int getResultsSize() {
 		return keyResultMap.size();
@@ -81,7 +86,7 @@ public class SearchResult {
 	 * 取得当前全部的键结果数组<br>
 	 * 未经排序<br>
 	 * 
-	 * @return
+	 * @return SearchKeyResult数组{@link SearchKeyResult}
 	 */
 	public SearchKeyResult[] getResults() {
 		Collection<SearchKeyResult> values = keyResultMap.values();
@@ -94,7 +99,7 @@ public class SearchResult {
 	 * 取得当前全部键结果数组<br>
 	 * 已排序，匹配度大在前{@link SearchKeyResult#compareTo(SearchKeyResult)}
 	 * 
-	 * @return
+	 * @return 按匹配度从大到小的数组
 	 */
 	public SearchKeyResult[] getSortedResults() {
 		Collection<SearchKeyResult> values = keyResultMap.values();
@@ -109,6 +114,7 @@ public class SearchResult {
 	 * 把一个键结果合并进来
 	 * 
 	 * @param keyResult
+	 *            键结果{@link SearchKeyResult}
 	 */
 	private void tryAddKeyResutl(SearchKeyResult keyResult) {
 		if (null != keyResult) {

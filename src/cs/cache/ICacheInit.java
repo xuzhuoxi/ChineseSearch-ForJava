@@ -41,9 +41,9 @@ public interface ICacheInit {
 	/**
 	 * 缓存数据<br>
 	 * 
-	 * @param key
+	 * @param resourceKey
 	 *            汉字(词)
-	 * @param value
+	 * @param resourceValue
 	 *            值
 	 */
 	void supplyData(String resourceKey, String resourceValue);

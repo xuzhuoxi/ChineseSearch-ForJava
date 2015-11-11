@@ -14,15 +14,17 @@ public interface IDimensionMap {
 	/**
 	 * 获得当前维度，即存放中最长的Key的长度
 	 * 
-	 * @return
+	 * @return 当前维度
 	 */
 	int getDimension();
 
 	/**
 	 * 存储一对键值对，如果键已存在，就尝试在对应值列表中追加值，已存在相同的值则忽略。<br>
 	 * 
-	 * @param dimensionKey键
-	 * @param dimensionValue值
+	 * @param dimensionKey
+	 *            键
+	 * @param dimensionValue
+	 *            值
 	 */
 	void add(String dimensionKey, String dimensionValue);
 
@@ -30,7 +32,8 @@ public interface IDimensionMap {
 	 * 通过键，取得值列表<br>
 	 * 
 	 * @param dimensionKey
-	 * @return 返回的是原始列表
+	 *            键
+	 * @return 返回的是原始列表，若要修改请注意。
 	 */
 	List<String> get(String dimensionKey);
 }
