@@ -1,0 +1,88 @@
+<project name="P2009_Tools.build" default="all" basedir="./">
+	<!--ANT 1.7 is required                  	-->
+	<property environment="env" />
+	<property name="src.main.dir" value="${basedir}/src" />
+	<property name="src.test.dir" value="${basedir}/test" />
+	<property name="lib.dir" value="${basedir}/lib" />
+
+	<property name="bin.dir" value="${basedir}/antbin" />
+	<property name="bin.main" value="${bin.dir}/main" />
+	<property name="bin.test" value="${bin.dir}/test" />
+
+	<property name="dist.dir" value="${basedir}/dist" />
+	<property name="docs.dist.dir" value="${dist.dir}/docs" />
+	<property name="release.dist.dir" value="${dist.dir}/release" />
+	<property name="res.dir" value="${basedir}/res" />
+
+	<!-- 初始化classpath -->
+	<zipfileset id="jar_lib" dir="${lib.dir}">
+		<include name="codeutil.jar" />
+		<include name="junit.jar" />
+		<include name="org.hamcrest.core_1.3.0.v201303031735.jar" />
+	</zipfileset>
+	<path id="id_classpath">
+		<fileset refid="jar_lib" />
+	</path>
+	<!-- 默认构建入口 -->
+	<target name="all" description="默认构建入口">
+		<antcall target="init" />
+		<antcall target="compile" />
+		<antcall target="jar" />
+		<antcall target="jar-src" />
+		<antcall target="javadoc" />
+		<!--
+		<antcall target="moveconfig" />
+		 -->
+	</target>
+	<!-- 初始化环境-->
+	<target name="init" description="初始化环境">
+		<antcall target="clean" />
+		<antcall target="initdir" />
+	</target>
+	<target name="clean">
+		<delete dir="${bin.dir}" />
+		<delete dir="${docs.dist.dir}" />
+		<delete dir="${release.dist.dir}" />
+	</target>
+	<target name="initdir">
+		<mkdir dir="${bin.dir}" />
+		<mkdir dir="${docs.dist.dir}" />
+		<mkdir dir="${release.dist.dir}" />
+	</target>
+	<!-- 编译文件-->
+	<target name="compile" description="编译文件">
+		<antcall target="compile.main" />
+	</target>
+	<target name="compile.main">
+		<delete dir="${bin.main}" />
+		<mkdir dir="${bin.main}" />
+		<javac srcdir="${src.main.dir}" destdir="${bin.main}" encoding="UTF-8" debug="true" includeantruntime="false"  source="1.6" target="1.6">
+			<classpath refid="id_classpath" />
+		</javac>
+	</target>
+	<!-- 打包成可执行文件jar -->
+	<target name="jar" description="打包中间码">
+		<property name="jarName" value="chinesesearch" />
+		<jar destfile="${release.dist.dir}/${jarName}.jar" update="false">
+			<fileset dir="${bin.main}" />
+		</jar>
+	</target>
+	<target name="jar-src" description="打包源码">
+		<property name="jarName" value="chinesesearch-src" />
+		<jar destfile="${release.dist.dir}/${jarName}.jar" update="false">
+			<fileset dir="${src.main.dir}" />
+		</jar>
+	</target>
+	<!-- 生成API -->
+	<target name="javadoc" description="生成API">
+		<javadoc sourcepath="${src.main.dir}" destdir="${docs.dist.dir}" author="true" version="true" use="true" charset="UTF-8" encoding="UTF-8" docencoding="UTF-8">
+			<classpath refid="id_classpath" />
+			<package name="cs.*" />
+		</javadoc>
+	</target>
+	<!-- 复制转移配置文件 -->
+	<target name="moveconfig" description="复制转移配置文件">
+		<copy todir="${release.dist.dir}">
+		</copy>
+	</target>
+</project>
