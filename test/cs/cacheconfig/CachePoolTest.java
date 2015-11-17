@@ -56,7 +56,7 @@ public class CachePoolTest {
 		System.out.println(cc.toString());
 	}
 
-	// @Test
+	@Test
 	public void testWordsPinyin() {
 		IChineseCache cc = (IChineseCache) CachePool.getCache(CacheNames.PINYIN_WORDS);
 		List<String> keyList = cc.getKeys("sg");
@@ -87,7 +87,7 @@ public class CachePoolTest {
 		}
 	}
 
-	@Test
+	// @Test
 	public void testIntegrity() {
 		System.out.println("测试汉字完成性，共" + (0x9fa5 - 0x4e00 + 1) + "个汉字！");
 		IChineseCache cc0 = (IChineseCache) CachePool.getCache(CacheNames.WUBI_WORD);

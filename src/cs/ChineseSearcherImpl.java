@@ -110,8 +110,11 @@ public class ChineseSearcherImpl implements IChineseSearcher {
 		if (searchInfo.isChineseInput()) {
 			for (SearchTypes type : types) {
 				SearchTypeInfo sti = SearchConfig.getSearchTypeInfo(type);
-				String[] codedInputStrs = ValueCoding.getValueCodingStrategy(sti.getValueType())
-						.translate(searchInfo.getInputStr());
+				IValueCodingStrategy vcs = ValueCoding.getValueCodingStrategy(sti.getValueType());
+				String filteredInput = vcs.filter(searchInfo.getInputStr());
+				if (0 == filteredInput.length())
+					continue;
+				String[] codedInputStrs = vcs.translate(filteredInput);
 				SearchResult newSR = searchOneSearchType(type, codedInputStrs);
 				sr.addResult(newSR);
 			}
@@ -120,7 +123,12 @@ public class ChineseSearcherImpl implements IChineseSearcher {
 			}
 		} else {
 			for (SearchTypes type : types) {
-				Collection<SearchKeyResult> values = searchOneCoded(type, searchInfo.getInputStr());
+				SearchTypeInfo sti = SearchConfig.getSearchTypeInfo(type);
+				IValueCodingStrategy vcs = ValueCoding.getValueCodingStrategy(sti.getValueType());
+				String filteredInput = vcs.filter(searchInfo.getInputStr());
+				if (0 == filteredInput.length())
+					continue;
+				Collection<SearchKeyResult> values = searchOneCoded(type, filteredInput);
 				for (SearchKeyResult value : values) {
 					sr.addKeyResult(value);
 				}
@@ -141,6 +149,9 @@ public class ChineseSearcherImpl implements IChineseSearcher {
 	private SearchResult searchOneSearchType(SearchTypes st, String[] codedInputStrs) {
 		SearchResult sr = new SearchResult();
 		for (String codedInputStr : codedInputStrs) {
+			if (0 == codedInputStr.length()) {
+				continue;
+			}
 			Collection<SearchKeyResult> values = searchOneCoded(st, codedInputStr);
 			for (SearchKeyResult value : values) {
 				sr.addKeyResult(value);

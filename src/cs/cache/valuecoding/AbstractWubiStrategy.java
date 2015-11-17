@@ -25,6 +25,7 @@ public abstract class AbstractWubiStrategy extends ValueCoding {
 				sb.append(c);
 			}
 		}
+//		System.out.println("AbstractWubiStrategy.wubiFilter():" + input + ":" + sb.toString());
 		return sb.toString();
 	}
 

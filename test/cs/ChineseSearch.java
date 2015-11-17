@@ -37,11 +37,13 @@ public class ChineseSearch {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		final long initTimeMillis = System.currentTimeMillis();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					ChineseSearch window = new ChineseSearch();
 					window.frame.setVisible(true);
+					System.out.println(System.currentTimeMillis() - initTimeMillis);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
