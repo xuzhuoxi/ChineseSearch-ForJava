@@ -75,15 +75,16 @@ public class PinyinWordsStrategyImpl extends ValueCoding implements IValueCoding
 				sb.append(c);
 			}
 		}
+		// System.out.println("PinyinWordsStrategyImpl.filter():" + input + "|"
+		// + sb.toString());
 		return sb.toString();
 	}
 
 	/**
 	 * 翻译过程：<br>
-	 * 1.对字符串的中文进行翻译，前后以空格相隔 对于多音字，则进行自由组合<br>
+	 * 1.对字符串的中文进行翻译，前后以空格相隔，对于多音字，则进行自由组合<br>
 	 * 2.对上面的每一个字符串进行简化{@link #getSimplifyValue(String)}<br>
-	 * 3.对第一个简化后的字符串进行截取最多前三位<br>
-	 * 4.返回上一步字符串组成的非重复数组<br>
+	 * 3.返回上一步字符串组成的非重复数组<br>
 	 * 
 	 * @see #getSimplifyValue(String)
 	 */
@@ -123,9 +124,7 @@ public class PinyinWordsStrategyImpl extends ValueCoding implements IValueCoding
 			rs = new String[] { filteredInput };
 		}
 		for (int i = 0; i < rs.length; i++) {
-			String str = getSimplifyValue(rs[i]);
-			int maxIndex = str.length() <= 3 ? str.length() : 3;
-			rs[i] = str.substring(0, maxIndex);
+			rs[i] = getSimplifyValue(rs[i]);
 		}
 		return ArrayUtils.cleanRepeat2List(rs);
 	}
@@ -140,14 +139,19 @@ public class PinyinWordsStrategyImpl extends ValueCoding implements IValueCoding
 	 */
 	@Override
 	protected String[] computeDimensionKeys(String simplifyValue) {
+		final int maxDimension = 3;
 		String[] source = simplifyValue.split("");
-		String[][] temp = StringCombination.getTwoDimensionArray(ArrayUtils.subArray(source, 1), 1);
-		String[] subRs = StringCombination.dimensionalityReduction(temp);
-		String[] rs = new String[subRs.length + 1];
-		rs[0] = source[0];
-		for (int i = 1; i < rs.length; i++) {
-			rs[i] = rs[0] + subRs[i - 1];
+		if (source.length > 1) {
+			String[] subRs = StringCombination.getDimensionCombinationArray(ArrayUtils.subArray(source, 1),
+					maxDimension - 1, false);
+			String[] rs = new String[subRs.length + 1];
+			rs[0] = source[0];
+			for (int i = 1; i < rs.length; i++) {
+				rs[i] = rs[0] + subRs[i - 1];
+			}
+			return rs;
+		} else {
+			return source;
 		}
-		return rs;
 	}
 }

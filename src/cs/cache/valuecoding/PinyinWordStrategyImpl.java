@@ -38,6 +38,7 @@ public class PinyinWordStrategyImpl extends ValueCoding implements IValueCodingS
 				sb.append(c);
 			}
 		}
+//		System.out.println("PinyinWordStrategyImpl.filter():" + input + "|" + sb.toString());
 		return sb.toString();
 	}
 
