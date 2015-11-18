@@ -18,13 +18,16 @@ public class CacheConfigTest {
 	@Test
 	public void computeInitialCapacity() {
 		System.out.println("CacheConfigTest.computeInitialCapacity()");
-		System.out.println(tableSizeFor(20808));// 拼音字
-		System.out.println(tableSizeFor(6791));// 五笔字
 		
-		System.out.println(tableSizeFor(90679));// 拼音词
-		System.out.println(tableSizeFor(90674));// 五笔词
+		System.out.println(tableSizeFor(20808));// 拼音字 结果：32768
+		System.out.println(tableSizeFor(6791));// 五笔字 结果：8192
 		
-		System.out.println(tableSizeFor(90680));// 权值
+		System.out.println(tableSizeFor(90679));// 拼音词 结果：131072
+		System.out.println(tableSizeFor(90674));// 五笔词 结果：131072
+		
+		System.out.println(tableSizeFor(90680));// 权值 结果：131072
+		
+		System.out.println(tableSizeFor(50000));// 拼音词简化 结果：65536
 	}
 
 }

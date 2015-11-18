@@ -23,26 +23,21 @@ public abstract class DimensionMap {
 
 	/**
 	 * 通过键dimensionKey取得对应的值列表<br>
-	 * 
-	 * @param dimensionKey
-	 *            不验证dimensionKey的长度及存在性
-	 * @return 值列表
-	 */
-	protected final List<String> getKeyListAtLenLimit(String dimensionKey) {
-		return valueList.get(dimensionKey.length() - 1).get(dimensionKey);
-	}
-
-	/**
-	 * 通过键dimensionKey取得对应的值列表<br>
+	 * 对dimenstionKey进行验证，如果没有缓存过，则返回null。
 	 * 
 	 * @param dimensionKey
 	 *            如果长度大于valueList的size，取前部分允许长度的字符串作为键值进行获取<br>
 	 * @return 值列表
 	 */
 	protected final List<String> getKeyList(String dimensionKey) {
-		if (dimensionKey.length() <= valueList.size())
-			return getKeyListAtLenLimit(dimensionKey);
-		return valueList.get(valueList.size() - 1).get(dimensionKey.substring(0, valueList.size()));
+		if (dimensionKey.length() > valueList.size())
+			return null;
+		Map<String, List<String>> map = valueList.get(dimensionKey.length() - 1);
+		if (null == map)
+			return null;
+		if (!map.containsKey(dimensionKey))
+			return null;
+		return map.get(dimensionKey);
 	}
 
 	@Override
