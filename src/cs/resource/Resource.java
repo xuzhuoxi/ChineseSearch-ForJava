@@ -89,6 +89,16 @@ public class Resource {
 	}
 
 	/**
+	 * 取全部值
+	 * 
+	 * @return 值
+	 */
+	public final String[] getValues() {
+		String[] rs = new String[valueList.size()];
+		return valueList.toArray(rs);
+	}
+
+	/**
 	 * 通过资源的路径创建实例，默认资源编码格式为UTF-8。<br>
 	 * 其它编码可参考{@link #getResourceByPath(String, String)}
 	 * 

@@ -28,7 +28,7 @@ public class FixedDimensionMapImpl extends DimensionMap implements IDimensionMap
 		List<String> dimensionKeylist = null;
 		for (int i = 0; i < dimension; i++) {
 			dimensionKeylist = addDimmension(dimensionKeylist);
-			Map<String, List<String>> map = new HashMap<String, List<String>>();
+			Map<String, List<String>> map = new HashMap<String, List<String>>(8192);
 			this.valueList.add(map);
 			for (String dk : dimensionKeylist) {
 				map.put(dk, new ArrayList<String>());
@@ -44,10 +44,10 @@ public class FixedDimensionMapImpl extends DimensionMap implements IDimensionMap
 	@Override
 	public void add(String dimensionKey, String dimensionValue) {
 		if (dimensionKey.length() <= dimension) {
-			List<String> list = getKeyListAtLenLimit(dimensionKey);
-			if (!list.contains(dimensionValue)) {
-				list.add(dimensionValue);
-			}
+			List<String> list = getKeyList(dimensionKey);
+			if (null == list || list.contains(dimensionValue))
+				return;
+			list.add(dimensionValue);
 		}
 	}
 

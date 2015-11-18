@@ -1,7 +1,5 @@
 package cs.cacheconfig;
 
-import java.util.List;
-
 import org.junit.Test;
 
 import cs.cache.IChineseCache;
@@ -9,67 +7,49 @@ import cs.cache.IWeightCache;
 
 public class CachePoolTest {
 
-	// @Test
+	private void printCache(IChineseCache cc) {
+//		System.out.println(cc.toString());
+	}
+
+	private void printSomeFromCache(IChineseCache cc, String dimensionKey) {
+		// List<String> keyList = cc.getKeys(dimensionKey);
+		// if (null != keyList) {
+		// System.out.println(cc.getCacheName() + ": " + keyList.size());
+		// for (String key : keyList) {
+		// System.out.print(" " + key);
+		// }
+		// System.out.println();
+		// } else {
+		// System.out.println(cc.getCacheName() + ": 0");
+		// }
+	}
+
+	@Test
 	public void testWordWubi() {
 		IChineseCache cc = (IChineseCache) CachePool.getCache(CacheNames.WUBI_WORD);
-		List<String> keyList = cc.getKeys("sg");
-		if (null != keyList) {
-			System.out.println("ChineseCacheTest.testWordWubi(): " + keyList.size());
-			for (String key : keyList) {
-				System.out.print(" " + key);
-			}
-			System.out.println();
-		} else {
-			System.out.println("ChineseCacheTest.testWordWubi(): 0");
-		}
-		System.out.println(cc.toString());
+		this.printSomeFromCache(cc, "sg");
+		this.printCache(cc);
 	}
 
-	// @Test
+	@Test
 	public void testWordsWubi() {
 		IChineseCache cc = (IChineseCache) CachePool.getCache(CacheNames.WUBI_WORDS);
-		List<String> keyList = cc.getKeys("sg");
-		if (null != keyList) {
-			System.out.println("ChineseCacheTest.testWordsWubi(): " + keyList.size());
-			for (String key : keyList) {
-				System.out.print(" " + key);
-			}
-			System.out.println();
-		} else {
-			System.out.println("ChineseCacheTest.testWordsWubi(): 0");
-		}
+		this.printSomeFromCache(cc, "sg");
+		this.printCache(cc);
 	}
 
-	// @Test
+	@Test
 	public void testWordPinyin() {
 		IChineseCache cc = (IChineseCache) CachePool.getCache(CacheNames.PINYIN_WORD);
-		List<String> keyList = cc.getKeys("sg");
-		if (null != keyList) {
-			System.out.println("ChineseCacheTest.testWordPinyin(): " + keyList.size());
-			for (String key : keyList) {
-				System.out.print(" " + key);
-			}
-			System.out.println();
-		} else {
-			System.out.println("ChineseCacheTest.testWordPinyin(): 0");
-		}
-		System.out.println(cc.toString());
+		this.printSomeFromCache(cc, "sg");
+		this.printCache(cc);
 	}
 
 	@Test
 	public void testWordsPinyin() {
 		IChineseCache cc = (IChineseCache) CachePool.getCache(CacheNames.PINYIN_WORDS);
-		List<String> keyList = cc.getKeys("sg");
-		if (null != keyList) {
-			System.out.println("ChineseCacheTest.testWordsWubi(): " + keyList.size());
-			for (String key : keyList) {
-				System.out.print(" " + key);
-			}
-			System.out.println();
-		} else {
-			System.out.println("ChineseCacheTest.testWordsWubi(): 0");
-		}
-		System.out.println(cc.toString());
+		this.printSomeFromCache(cc, "sg");
+		this.printCache(cc);
 	}
 
 	// @Test

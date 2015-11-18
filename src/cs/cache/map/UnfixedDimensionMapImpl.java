@@ -21,8 +21,8 @@ public class UnfixedDimensionMapImpl extends DimensionMap implements IDimensionM
 	}
 
 	/**
-	 * 如果键dimensionKey的长度大于维度(valueList.size)，则补充空的Map对应使得维度(valueList.size)
-	 * 等于键dimensionKey的长度<br>
+	 * 如果键dimensionKey的长度大于维度(valueList.size)，则填充空的Map至使维度(valueList.size)
+	 * 等于dimensionKey的长度<br>
 	 */
 	@Override
 	public void add(String dimensionKey, String dimensionValue) {
@@ -32,7 +32,7 @@ public class UnfixedDimensionMapImpl extends DimensionMap implements IDimensionM
 		int dValue = dimensionKey.length() - valueList.size();
 		if (dValue > 0) {
 			for (int i = 0; i < dValue; i++) {
-				valueList.add(new HashMap<String, List<String>>());
+				valueList.add(new HashMap<String, List<String>>(8192));
 			}
 		}
 		Map<String, List<String>> map = valueList.get(dimensionKey.length() - 1);

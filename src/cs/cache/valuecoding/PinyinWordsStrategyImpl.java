@@ -139,7 +139,7 @@ public class PinyinWordsStrategyImpl extends ValueCoding implements IValueCoding
 	 */
 	@Override
 	protected String[] computeDimensionKeys(String simplifyValue) {
-		final int maxDimension = 3;
+		final int maxDimension = 2;
 		String[] source = simplifyValue.split("");
 		if (source.length > 1) {
 			String[] subRs = StringCombination.getDimensionCombinationArray(ArrayUtils.subArray(source, 1),
