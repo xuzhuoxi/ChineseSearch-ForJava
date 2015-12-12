@@ -24,7 +24,6 @@ public class FixedDimensionMapImpl extends DimensionMap implements IDimensionMap
 			throw new Error("The different elements in keyCode should always be greater than 0.");
 		}
 		this.dimension = dimension;
-		this.valueList = new ArrayList<Map<String, List<String>>>();
 		List<String> dimensionKeylist = null;
 		for (int i = 0; i < dimension; i++) {
 			dimensionKeylist = addDimmension(dimensionKeylist);

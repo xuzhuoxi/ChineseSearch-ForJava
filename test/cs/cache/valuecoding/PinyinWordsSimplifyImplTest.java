@@ -12,7 +12,7 @@ import cs.resource.ResourceTypes;
 public class PinyinWordsSimplifyImplTest {
 	private static IValueCodingStrategy strategy = new PinyinWordsStrategyImpl();
 
-	// @Test
+	@Test
 	public void test() {
 		// 幸免于难=nie mian xu nan#xing mian xu nan#nie wan xu nan#xing wan xu
 		// nan#nie wen xu nan#xing wen xu nan#nie mian yu nan#xing mian yu
@@ -35,7 +35,7 @@ public class PinyinWordsSimplifyImplTest {
 
 	}
 
-	@Test
+//	@Test
 	public void testPerformance0() {
 		try {
 			Resource resource = Resource.getResource("words", ResourceTypes.TYPE_PINYIN);

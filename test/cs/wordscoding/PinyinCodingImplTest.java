@@ -21,7 +21,7 @@ public class PinyinCodingImplTest {
 			resource = Resource.getResource("word", ResourceTypes.TYPE_PINYIN);
 			cc = ChineseCache.createChineseCache("wordPinyin", resource, ValueCodingTypes.PINYIN_WORD);
 			for (String test : testAry) {
-				System.out.println("PinyinCodingImplTest.test()");
+				System.out.println("PinyinCodingImplTest.test()" + test + ":");
 				String[] codings = impl.coding(cc, test);
 				for (String coding : codings) {
 					System.out.println("PinyinCodingImplTest.test()" + coding);
