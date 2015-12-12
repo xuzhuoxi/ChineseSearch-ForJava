@@ -81,6 +81,11 @@ public abstract class WeightCache implements IWeightCache, ICacheInit {
 		return DEFAULT_VALUE;
 	}
 
+	@Override
+	public String toString() {
+		return cacheName + "\n" + key2weight.toString();
+	}
+
 	public static final IWeightCache createWeightCache(String cacheName, Resource resource) {
 		WeightCacheImpl rs = new WeightCacheImpl();
 		rs.initCache(cacheName, null, resource.size());

@@ -23,7 +23,7 @@ public class PinyinCodingImpl extends ChineseWordsCoding implements IChineseWord
 	@Override
 	public final String[] coding(IChineseCache wordCache, String words) {
 		final int keyLen = words.length();
-		if (words.length() > 0 && canCoding(wordCache, words)) {
+		if (keyLen > 0 && canCoding(wordCache, words)) {
 			String[][] values = new String[keyLen][];
 			int i;
 			int size = 1;

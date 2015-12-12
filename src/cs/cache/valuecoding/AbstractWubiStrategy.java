@@ -40,7 +40,7 @@ public abstract class AbstractWubiStrategy extends ValueCoding {
 	 */
 	protected final String getWubiMaxlenValue(IChineseCache wordMap, String word) {
 		String[] values = wordMap.getValues(word);
-		if (values.length > 1) {
+		if (values.length == 1) {
 			return values[0];
 		} else {
 			int maxLenIndex = 0;

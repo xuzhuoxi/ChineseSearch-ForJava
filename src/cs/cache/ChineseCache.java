@@ -78,8 +78,8 @@ public abstract class ChineseCache implements IChineseCache, ICacheInit {
 	 *            键
 	 */
 	protected final void cache2DimensionMap(String singleValue, String key) {
-		String[] dimensionKeys = strategy.getDimensionKeys(strategy.getSimplifyValue(singleValue));//35%性能占用
-		for (String dimensionKey : dimensionKeys) {//65%性能占用
+		String[] dimensionKeys = strategy.getDimensionKeys(strategy.getSimplifyValue(singleValue));// 35%性能占用
+		for (String dimensionKey : dimensionKeys) {// 65%性能占用
 			chineseMap.add(dimensionKey, key);
 		}
 	}
@@ -111,7 +111,7 @@ public abstract class ChineseCache implements IChineseCache, ICacheInit {
 
 	@Override
 	public String toString() {
-		return chineseMap.toString();
+		return cacheName + "\n" + chineseMap.toString();
 	}
 
 	public static final IChineseCache createChineseCache(String cacheName, Resource resource,
