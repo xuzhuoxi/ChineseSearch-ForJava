@@ -11,7 +11,7 @@ public class WeightCacheImpl extends WeightCache {
 	/**
 	 * ^[1-9]d*.d*$ //大于等于1浮点数
 	 */
-	private static final String REGEX_FLOAT_1MORE = "^+?([1-9]\\d*.\\d*|[1-9]\\d*)$";
+	private static final String REGEX_FLOAT_1MORE = "^\\+?([1-9]\\d*\\.\\d*|[1-9]\\d*)$";
 
 	WeightCacheImpl() {
 	}
