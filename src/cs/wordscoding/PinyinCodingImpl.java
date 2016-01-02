@@ -54,7 +54,7 @@ public class PinyinCodingImpl extends ChineseWordsCoding implements IChineseWord
 			}
 			return rs;
 		} else {
-			return words.split("");
+			return new String[] { words };
 		}
 	}
 

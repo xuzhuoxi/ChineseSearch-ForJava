@@ -62,7 +62,7 @@ public class WubiCodingImpl extends ChineseWordsCoding implements IChineseWordsC
 			}
 			return codingResult;
 		} else {
-			return words.split("");
+			return new String[] { words };
 		}
 	}
 

@@ -36,7 +36,7 @@ abstract public class ChineseWordsCoding {
 		char word;
 		for (int i = 0; i < keyLen; i++) {
 			word = words.charAt(i);
-			if (ChineseUtils.isChinese(word) && !wordCache.isKey(word + "")) {
+			if (!ChineseUtils.isChinese(word) || !wordCache.isKey(word + "")) {
 				return false;
 			}
 		}
