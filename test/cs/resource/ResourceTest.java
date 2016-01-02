@@ -54,6 +54,24 @@ public class ResourceTest {
 			e.printStackTrace();
 		}
 	}
+	
+	@Test
+	public void testGetResource() {
+		String[] names = {"word","words","word","words","words"};
+		String[] types = {ResourceTypes.TYPE_PINYIN,ResourceTypes.TYPE_PINYIN,ResourceTypes.TYPE_WUBI,ResourceTypes.TYPE_WUBI,ResourceTypes.TYPE_WEIGHT};
+		for (int i = 0 ; i < names.length; i++) {
+			try {
+				Resource resource = Resource.getResource(names[i], types[i]);
+				System.out.println(resource.size());
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}	
+		}
+	}
 
 	@Test
 	public void testGetResourceByDataString() {

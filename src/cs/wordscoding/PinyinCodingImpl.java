@@ -28,7 +28,12 @@ public class PinyinCodingImpl extends ChineseWordsCoding implements IChineseWord
 			int i;
 			int size = 1;
 			for (i = 0; i < keyLen; i++) {
-				values[i] = wordCache.getValues(words.charAt(i) + "");
+				String word = words.charAt(i) + "";
+				if (wordCache.isKey(word)) {
+					values[i] = wordCache.getValues(words.charAt(i) + "");
+				} else {
+					values[i] = new String[] { word };
+				}
 				size *= values[i].length;
 			}
 			List<StringBuilder> sbList = new ArrayList<StringBuilder>(size);
@@ -49,7 +54,7 @@ public class PinyinCodingImpl extends ChineseWordsCoding implements IChineseWord
 			}
 			return rs;
 		} else {
-			return null;
+			return words.split("");
 		}
 	}
 
