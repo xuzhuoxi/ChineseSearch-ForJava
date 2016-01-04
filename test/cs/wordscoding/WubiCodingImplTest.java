@@ -11,7 +11,7 @@ import cs.resource.ResourceTypes;
 public class WubiCodingImplTest {
 	private WubiCodingImpl impl = new WubiCodingImpl();
 
-	private String[] testAry = new String[] { "一", "丁", "点", "一丁点" };
+	private String[] testAry = new String[] { "一", "丁", "点", "一丁点", "丏" };
 
 	@Test
 	public void test() {

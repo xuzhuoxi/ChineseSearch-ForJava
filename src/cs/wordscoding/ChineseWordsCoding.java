@@ -1,5 +1,6 @@
 package cs.wordscoding;
 
+import code.chinese.ChineseUtils;
 import cs.cache.IChineseCache;
 
 /**
@@ -35,7 +36,7 @@ abstract public class ChineseWordsCoding {
 		char word;
 		for (int i = 0; i < keyLen; i++) {
 			word = words.charAt(i);
-			if (word < 0x4e00 || word > 0x9fa5 || !wordCache.isKey(word + "")) {
+			if (!ChineseUtils.isChinese(word) || !wordCache.isKey(word + "")) {
 				return false;
 			}
 		}

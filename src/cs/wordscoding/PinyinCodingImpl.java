@@ -17,18 +17,23 @@ public class PinyinCodingImpl extends ChineseWordsCoding implements IChineseWord
 
 	/**
 	 * 编码过程：<br>
-	 * 1.验证可编码性。<br>
-	 * 2.取每个汉字的拼音编码数组分别作自由组合，中间补充空间。<br>
+	 * 1.不可编码部分作为编码保留，可编码则求取编码。
+	 * 2.编码数组作自由组合，中间补充空格。<br>
 	 */
 	@Override
 	public final String[] coding(IChineseCache wordCache, String words) {
 		final int keyLen = words.length();
-		if (keyLen > 0 && canCoding(wordCache, words)) {
-			String[][] values = new String[keyLen][];
+		if (keyLen > 0) {
+			String[] parts = participles(wordCache, words);
+			String[][] values = new String[parts.length][];
 			int i;
 			int size = 1;
-			for (i = 0; i < keyLen; i++) {
-				values[i] = wordCache.getValues(words.charAt(i) + "");
+			for (i = 0; i < values.length; i++) {
+				if (parts[i].length() > 1 || !wordCache.isKey(parts[i])) {
+					values[i] = new String[] { parts[i] };
+				} else {
+					values[i] = wordCache.getValues(parts[i]);
+				}
 				size *= values[i].length;
 			}
 			List<StringBuilder> sbList = new ArrayList<StringBuilder>(size);
@@ -49,8 +54,30 @@ public class PinyinCodingImpl extends ChineseWordsCoding implements IChineseWord
 			}
 			return rs;
 		} else {
-			return null;
+			return new String[] { words };
 		}
 	}
 
+	private String[] participles(IChineseCache wordCache, String words) {
+		List<String> temp = new ArrayList<String>();
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < words.length(); i++) {
+			String word = words.charAt(i) + "";
+			if (wordCache.isKey(word)) {
+				if (sb.length() > 0) {
+					temp.add(sb.toString());
+					sb.setLength(0);
+				}
+				temp.add(word);
+			} else {
+				sb.append(word);
+			}
+		}
+		if (sb.length() > 0) {
+			temp.add(sb.toString());
+		}
+		String[] rs = new String[temp.size()];
+		temp.toArray(rs);
+		return rs;
+	}
 }

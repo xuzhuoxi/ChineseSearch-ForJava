@@ -62,7 +62,7 @@ public class WubiCodingImpl extends ChineseWordsCoding implements IChineseWordsC
 			}
 			return codingResult;
 		} else {
-			return null;
+			return new String[] { words };
 		}
 	}
 
@@ -71,13 +71,17 @@ public class WubiCodingImpl extends ChineseWordsCoding implements IChineseWordsC
 	 * 
 	 * @param wordCache
 	 * @param word
-	 * @return
+	 * @return 如果没有编码信息，返回源字符
 	 */
 	private String getMaxValue(IChineseCache wordCache, String word) {
-		String[] values = wordCache.getValues(word);
-		if (values.length > 1) {
-			Arrays.sort(values, comparator);
+		if (wordCache.isKey(word)) {
+			String[] values = wordCache.getValues(word);
+			if (values.length > 1) {
+				Arrays.sort(values, comparator);
+			}
+			return values[0];
+		} else {
+			return word;
 		}
-		return values[0];
 	}
 }
